@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# This script will dump the root, data, and gaadata filesystems onto the usb splitting gaadata every 4GB.
+# This script will dump the root, data, and gaadata filesystems onto the usb splitting gaadata every 4GB if needed.
 #
 mediafs="$(df -T | grep -Ee ' /media$' | awk -e '{ print $2 }')"
 killall -KILL sonyapp
