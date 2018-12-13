@@ -9,9 +9,9 @@ mount -o remount,ro /data
 mount -o remount,ro /gaadata
 
 if [ "$mediafs" == "vfat" ]; then
-  dd if=/dev/mmcblk0 bs=1M | split -a3 -b4294967295 - "/media/mmcblk0.bin."
+  dd if=/dev/mmcblk0 bs=1M | gzip | split -a3 -b4294967295 - "/media/mmcblk0.bin.gz."
 else
-  dd if=/dev/mmcblk0 bs=1M > /media/mmcblk0.bin
+  dd if=/dev/mmcblk0 bs=1M | gzip > /media/mmcblk0.bin.gz
 fi
 
 sync
