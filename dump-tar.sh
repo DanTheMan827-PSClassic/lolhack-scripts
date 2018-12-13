@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# This script will dump the root, data, and gaadata partitions onto the usb as tar archives splitting gaadata every 4GB.
+# This script will dump the root, data, and gaadata partitions onto the usb as tar archives splitting gaadata every 4GB if needed.
 #
 mediafs="$(df -T | grep -Ee ' /media$' | awk -e '{ print $2 }')"
 killall -KILL sonyapp
