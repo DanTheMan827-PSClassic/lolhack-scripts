@@ -2,12 +2,18 @@
 #
 # This script will dump the root, data, and gaadata partitions onto the usb as tar archives splitting gaadata every 4GB.
 #
+mediafs="$(df -T | grep -Ee ' /media$' | awk -e '{ print $2 }')"
 killall -KILL sonyapp
 
 mount -o remount,ro /data
 mount -o remount,ro /gaadata
 
-tar -cf - -C "/gaadata" . bs=1M | split -a3 -b4294967295 - "/media/gaadata.tar."
+if [ "$mediafs" == "vfat" ]; then
+  tar -cf - -C "/gaadata" . | split -a3 -b4294967295 - "/media/gaadata.tar."
+else
+  tar -cf - -C "/gaadata" . > /media/gaadata.tar
+fi
+
 tar -cf - -C /data . > /media/data.tar
 
 rootdevice="$(mount | grep ' on / ' | awk -e '{ print $1 }')"
