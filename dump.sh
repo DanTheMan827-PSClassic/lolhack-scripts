@@ -5,9 +5,9 @@
 killall -KILL sonyapp
 mount -o remount,ro /data
 mount -o remount,ro /gaadata
-dd if=/dev/mapper/gaadata | split -a3 -b4294967295 - "/media/gaadata.bin."
-dd if=/dev/mmcblk0p10 > /media/data.bin
-dd if=/dev/root > /media/root.bin
+dd if=/dev/mapper/gaadata bs=1M | split -a3 -b4294967295 - "/media/gaadata.bin."
+dd if=/dev/mmcblk0p10 bs=1M > /media/data.bin
+dd if=/dev/root bs=1M > /media/root.bin
 sync
 mount -o remount,rw /data
 mount -o remount,rw /gaadata
