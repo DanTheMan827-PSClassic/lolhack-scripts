@@ -9,12 +9,12 @@ mount -o remount,ro /data
 mount -o remount,ro /gaadata
 
 if [ "$mediafs" == "vfat" ]; then
-  tar -czf - -C "/gaadata" . | split -a3 -b4294967295 - "/media/gaadata.tar."
+  tar -czf - -C "/gaadata" . | split -a3 -b4294967295 - "/media/gaadata.tar.gz."
 else
-  tar -czf - -C "/gaadata" . > /media/gaadata.tar
+  tar -czf - -C "/gaadata" . > /media/gaadata.tar.gz
 fi
 
-tar -czf - -C /data . > /media/data.tar
+tar -czf - -C /data . > /media/data.tar.gz
 
 rootdevice="$(mount | grep ' on / ' | awk -e '{ print $1 }')"
 
