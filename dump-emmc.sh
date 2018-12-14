@@ -16,7 +16,4 @@ fi
 
 sync
 
-mount -o remount,rw /data
-mount -o remount,rw /gaadata
-
-systemctl start sonyapp.service &
+shutdown -h
