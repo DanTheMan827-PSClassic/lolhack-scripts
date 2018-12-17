@@ -20,7 +20,7 @@ rootdevice="$(mount | grep ' on / ' | awk -e '{ print $1 }')"
 
 mkdir -p /tmp/root
 mount -o ro "$rootdevice" /tmp/root
-tar -czf - -C /tmp/root . > /media/root.tar
+tar -czf - -C /tmp/root . > /media/root.tar.gz
 umount /tmp/root
 rmdir /tmp/root
 
